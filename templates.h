@@ -5,6 +5,7 @@
 #include <type_traits>
 #include "point.h"
 
+
 template<class T>
 struct is_point : std::false_type {};
 
@@ -58,7 +59,7 @@ template<class T, class = void>
 struct has_method_print : std::false_type {};
 
 template<class T>
-struct has_method_print<T, std::void_t<decltype(std::declval<const T&>().print())>> : std::true_type {};
+struct has_method_print<T, std::void_t<decltype(std::declval<const T&>().print(std::cout))>> : std::true_type {};
 
 template<class T>
 inline constexpr bool has_method_print_v = has_method_print<T>::value;
