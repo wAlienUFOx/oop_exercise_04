@@ -1,5 +1,5 @@
-#ifndef D_VERTEX_H_
-#define D_VERTEX_H_
+#ifndef POINT_H_
+#define POINT_H_
 
 #include <iostream>
 

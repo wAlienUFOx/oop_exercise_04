@@ -39,6 +39,7 @@ void running(std::istream& is, std::ostream& os) {
 
 int main() {
     char obj_type;
+    std::cout << "Input figure type: 1 - trapeze, 2 - rhombus, 3 - rectangle, 4 - tuple or 'q' to quit" << std::endl;
     while (std::cin >> obj_type){
         if(obj_type == '4') {
             running<std::tuple<point<double>>> (std::cin, std::cout);

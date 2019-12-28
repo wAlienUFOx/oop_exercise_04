@@ -1,5 +1,5 @@
-#ifndef D_TRIANGLE_H_
-#define D_TRIANGLE_H_
+#ifndef TRIANGLE_H_
+#define TRIANGLE_H_
 #include <iostream>
 #include "point.h"
 #include <cmath>

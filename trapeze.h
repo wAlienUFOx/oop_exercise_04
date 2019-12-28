@@ -1,5 +1,5 @@
-#ifndef D_TRAPEZE_H_
-#define D_TRAPEZE_H_
+#ifndef TRAPEZE_H_
+#define TRAPEZE_H_
 #include <iostream>
 #include <cmath>
 #include "point.h"

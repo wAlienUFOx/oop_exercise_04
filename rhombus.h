@@ -1,5 +1,5 @@
-#ifndef D_RHOMBUS_H_
-#define D_RHOMBUS_H_
+#ifndef RHOMBUS_H_
+#define RHOMBUS_H_
 #include <iostream>
 #include <cmath>
 #include "point.h"

@@ -1,5 +1,5 @@
-#ifndef D_TEMPLATES_H_
-#define D_TEMPLATES_H_ 
+#ifndef TEMPLATES_H_
+#define TEMPLATES_H_
 
 #include <tuple>
 #include <type_traits>
@@ -80,7 +80,7 @@ template<size_t Id, class T>
     const auto x1 = std::get<Id - 0>(tuple).x - std::get<0>(tuple).x;
     const auto y1 = std::get<Id - 0>(tuple).y - std::get<0>(tuple).y;
     const auto x2 = std::get<Id - 1>(tuple).x - std::get<0>(tuple).x;
-    const auto y2 = std::get<Id - 1>(tuple).x - std::get<0>(tuple).x;
+    const auto y2 = std::get<Id - 1>(tuple).y - std::get<0>(tuple).y;
     const double local_area = std::abs(x1 * y2 - y1 * x2) * 0.5;
     return local_area + compute_area<Id + 1>(tuple);
   }
