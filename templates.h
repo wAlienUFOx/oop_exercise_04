@@ -43,8 +43,7 @@ template<class T, class = void>
 struct has_method_center : std::false_type {};
 
 template<class T>
-struct has_method_center<T, decltype(std::declval<const T&>().center())> :
-        std::true_type {};
+struct has_method_center<T, std::void_t<decltype(std::declval<const T&>().center())>> : std::true_type {};
 
 template<class T>
 inline constexpr bool has_method_center_v = has_method_center<T>::value;
@@ -59,16 +58,14 @@ template<class T, class = void>
 struct has_method_print : std::false_type {};
 
 template<class T>
-struct has_method_print<T, decltype(std::declval<const T&>().print())> :
-        std::true_type {};
+struct has_method_print<T, std::void_t<decltype(std::declval<const T&>().print())>> : std::true_type {};
 
 template<class T>
 inline constexpr bool has_method_print_v = has_method_print<T>::value;
 
 template<class T>
-std::enable_if_t<has_method_print_v<T>, std::ostream &>
-print(std::ostream &os, const T& object) {
-    return object.print(os);
+std::enable_if_t<has_method_print_v<T>, void> print(std::ostream& os, const T& object) {
+    object.print(os);
 }
 
 
@@ -87,7 +84,8 @@ template<size_t Id, class T>
 }
 
 template<class T>
-std::enable_if_t<is_figurelike_tuple_v<T>, double> area(const T& object) {
+std::enable_if_t<is_figurelike_tuple_v<T>, double>
+area(const T& object) {
   if constexpr (std::tuple_size_v<T> < 3){
       throw std::logic_error("It`s not a figure");
   }else{
@@ -114,7 +112,8 @@ point<double> compute_center(const T &tuple) {
 }
 
 template<class T>
-std::enable_if_t<is_figurelike_tuple_v<T>, point<double>> center(const T& object) {
+std::enable_if_t<is_figurelike_tuple_v<T>, point<double>>
+center(const T& object) {
     if constexpr (std::tuple_size_v<T> < 3){
         throw std::logic_error("It`s not a figure");
     }else{
@@ -125,6 +124,7 @@ std::enable_if_t<is_figurelike_tuple_v<T>, point<double>> center(const T& object
 template<size_t Id, class T>
 void step_print(const T& object, std::ostream& os) {
     if constexpr (Id >= std::tuple_size<T>::value) {
+        std::cout << "\n";
     } else {
         os << std::get<Id>(object) << " ";
         step_print<Id + 1>(object, os);
@@ -132,7 +132,8 @@ void step_print(const T& object, std::ostream& os) {
 }
 
 template<class T>
-std::enable_if_t<is_figurelike_tuple_v<T>, void> print(const T& object, std::ostream& os) {
+std::enable_if_t<is_figurelike_tuple_v<T>, void>
+print(std::ostream& os, const T& object) {
     if constexpr (std::tuple_size_v<T> < 3){
         throw std::logic_error("It`s not a figure");
     }else{

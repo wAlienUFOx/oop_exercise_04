@@ -16,24 +16,22 @@ void running(std::istream& is, std::ostream& os) {
             point<double> A, B, C, D;
             is >> A >> B >> C >> D;
             auto object = std::make_tuple(A, B, C, D);
-            print(object, os);
-            os << std::endl;
+            print(os, object);
             os << area(object) << std::endl;
             os << center(object) << std::endl;
         }else if(ang == 3){
             point<double> A, B, C;
             is >> A >> B >> C;
             auto object = std::make_tuple(A, B, C);
-            print(object, os);
-            os << std::endl;
+            print(os, object);
             os << area(object) << std::endl;
             os << center(object) << std::endl;
         }
     }else {
         T object(is);
-        object.print(os);
-        os << '\n' << object.area() << std::endl;
-        os << object.center() << std::endl;
+        print(os, object);
+        os << '\n' << area(object) << std::endl;
+        os << center(object) << std::endl;
     }
 }
 
